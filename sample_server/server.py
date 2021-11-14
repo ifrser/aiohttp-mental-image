@@ -1,6 +1,8 @@
 from aiohttp import web
 from functools import cached_property
 
+from routes import routes
+
 
 class Server:
     """ Сервер для запуска приложения. """
@@ -11,7 +13,9 @@ class Server:
     @cached_property
     def app(self):
         """ Приложение для запуска. """
-        return web.Application()
+        app = web.Application()
+        app.add_routes(routes)
+        return app
 
     def run(self):
         """ Запустить сервер. """
