@@ -1,7 +1,7 @@
 from aiohttp import web
 from functools import cached_property
 
-from routes import routes
+from sample_server.routes import routes
 
 
 class Server:
@@ -11,7 +11,7 @@ class Server:
         self.port = 5000
 
     @cached_property
-    def app(self):
+    def app(self) -> web.Application:
         """ Приложение для запуска. """
         app = web.Application()
         app.add_routes(routes)
@@ -23,3 +23,4 @@ class Server:
             self.app,
             port=self.port
         )
+
